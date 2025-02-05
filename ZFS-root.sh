@@ -1949,11 +1949,11 @@ if [ "${DROPBEAR}" = "y" ] ; then
   # is not connected (no ethernet) it can fail to boot. Yay dracut.
   # Network really only needed for Dropbear/ssh access unlocking
   # Since we chose to use Dropbear, in this block set neednet=1
-  echo 'ip=dhcp rd.neednet=1' > /etc/cmdline.d/dracut-network.conf
+  echo 'ip=192.168.1.3::192.168.1.1:255.255.255.0::eth0:none rd.neednet=1' > /etc/cmdline.d/dracut-network.conf
 else
   # Not using Dropbear, so set neednet=0
   echo 'install_items+=" /etc/cmdline.d/dracut-network.conf "' > /etc/zfsbootmenu/dracut.conf.d/network.conf
-  echo 'ip=dhcp rd.neednet=0' > /etc/cmdline.d/dracut-network.conf
+  echo 'ip=192.168.1.3::192.168.1.1:255.255.255.0::eth0:none rd.neednet=0' > /etc/cmdline.d/dracut-network.conf
 fi
 
 # For ZFS encryption point to the /etc/zfs/zroot.key files in the initramfs
